@@ -7,7 +7,7 @@
   <% @lists.each do |list| %>
   <ul class="list-group">
     <li class="list-group-item">
-      <%= cl_image_tag(list.photo.key, height: 100, width: 100, crop: :fill )%>
+      <%= cl_image_tag(list.photo.key, height: 200, width: 200, crop: :fill )%>
       <%= link_to list.name, list_path(list) %>
     </li>
   </ul>
