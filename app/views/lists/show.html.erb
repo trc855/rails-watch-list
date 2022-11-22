@@ -1,19 +1,32 @@
 <div class="container">
-  <h1><%= @list.name %></h1>
+  <nav class="navbar navbar-light bg-light">
+    <%= cl_image_tag(@list.photo.key, height: 250, width: 300, crop: :fill )%>
+    <div class="px-5">
+      <a class="navbar-brand"><%= @list.name %></a>
+    </div>
+  </nav>
+
 
   <% @list.bookmarks.each do |bookmark| %>
   <ul class="list-group">
     <li class="list-group-item">
-      <%= bookmark.movie.title %>
-      <%= image_tag bookmark.movie.poster_url, alt: "Movie Poster", width: 200 %>
-      <p>Rating: <%= bookmark.movie.rating %></p>
-      <%= link_to "Delete movie",
-        bookmark_path(bookmark),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-      %>
+      <div class="nav">
+        <%= image_tag bookmark.movie.poster_url, alt: "Movie Poster", height: 200, width: 200 %>
+        <div class="card-body mx-3 my-auto">
+          <h4><%= bookmark.movie.title %></h4>
+          <p>Rating: <%= bookmark.movie.rating %></p>
+          <p>Note: <%= bookmark.comment %></p>
+
+          <%= link_to "Delete movie",
+            bookmark_path(bookmark),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+          %>
+        </div>
+      </div>
     </li>
   </ul>
   <% end %>
+
   <hr>
   <%= link_to "Add Movie to List", new_list_bookmark_path(@list) %>
   <%= link_to "Back to lists", lists_path %>

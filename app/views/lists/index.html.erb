@@ -1,11 +1,17 @@
 <div class="container">
-  <h1>Watch Lists</h1>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Watch Lists</a>
+    <%= link_to "Add new watch list", new_list_path %>
+  </nav>
 
   <% @lists.each do |list| %>
   <ul class="list-group">
-    <li class="list-group-item"><%= link_to list.name, list_path(list) %></li>
+    <li class="list-group-item">
+      <%= cl_image_tag(list.photo.key, height: 100, width: 100, crop: :fill )%>
+      <%= link_to list.name, list_path(list) %>
+    </li>
   </ul>
   <% end %>
 
-  <%= link_to "Add new list", new_list_path %>
+
 </div>
