@@ -2,11 +2,16 @@ require "open-uri"
 require "json"
 
 puts "Cleaning up database..."
+puts "Destroying all Bookmarks"
+Bookmark.destroy_all
+puts "Destroying all Movies"
 Movie.destroy_all
+puts "Destroying all Lists"
+List.destroy_all
 puts "Database cleaned"
 
 url = "http://tmdb.lewagon.com/movie/top_rated"
-# 10.times do |i|
+# 10.times do |i| random changes
 i = 0
 puts "Importing movies from page #{i + 1}"
 movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)['results']
