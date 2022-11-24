@@ -28,6 +28,18 @@
   <% end %>
 
   <hr>
+
+  <h4>Reviews</h4>
+  <% @reviews.each do |review| %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <p>Rating: <%= '⭐️' * review.rating %> - <%= review.content %></p>
+      </li>
+    </ul>
+  <% end %>
+
+  <hr>
   <%= link_to "Add Movie to List", new_list_bookmark_path(@list) %>
   <%= link_to "Back to lists", lists_path %>
+  <%= link_to "Leave a review", new_list_review_path(@list) %>
 </div>
